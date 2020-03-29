@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mybatis.dao.RoleMapper">
+    <!--在默认没有开启驼峰命名的条件下 需要定义resultMap-->
+    <resultMap id="roleMap" type="role">
+        <id column="id" property="id" jdbcType="BIGINT" javaType="long"/>
+        <result column="role_name" property="roleName" jdbcType="VARCHAR" javaType="string"/>
+        <result column="note" property="note" typeHandler="com.mybatis.type.MyStringTypeHandler"/>
+        <result column="sex" property="sex" typeHandler="com.mybatis.type.SexEnumTypeHandler"/>
+    </resultMap>
+    <sql id="role_column">
+        id,role_name,note,sex
+    </sql>
+    <sql id="role_column2">
+      role_name,note,sex
+    </sql>
+    <select id="getRole" resultMap="roleMap" parameterType="string">
+        select <include refid="role_column"/> from  t_role where role_name like concat('%',#{roleName javaType=string,
+        jdbcType=VARCHAR,typeHandler=com.mybatis.type.MyStringTypeHandler},'%')
+    </select>
+    <select id="findRole" resultMap="roleMap" parameterType="long">
+        select <include refid="role_column"/> from t_role where id=#{id}
+    </select>
+    <insert id="insertRole" parameterType="role" useGeneratedKeys="true"  keyProperty="id">
+        insert into t_role(<include refid="role_column2"/>) values (#{roleName},#{note},#{sex})
+    </insert>
+    <delete id="deleteRole" parameterType="long">
+        delete from t_role where id=#{id}
+    </delete>
+    <select id="findBySex" parameterType="com.mybatis.myEnum.Sex" resultMap="roleMap">
+        select <include refid="role_column2"/> from t_role where sex=#{sex}
+    </select>
+
+</mapper>

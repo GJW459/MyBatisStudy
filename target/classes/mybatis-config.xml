@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--配置-->
+<configuration>
+    <!--属性-->
+    <properties resource="datasource.properties"/>
+    <!--设置 开启驼峰自动映射-->
+    <!--<settings>-->
+        <!--<setting roleName="mapUnderscoreToCamelCase" value="true"/>-->
+    <!--</settings>-->
+    <!--类型别名-->
+    <typeAliases>
+        <package name="com.mybatis.model"/>
+    </typeAliases>
+    <!--类型处理器-->
+    <typeHandlers>
+        <typeHandler handler="com.mybatis.type.MyStringTypeHandler" jdbcType="VARCHAR" javaType="string"/>
+        <typeHandler handler="com.mybatis.type.SexEnumTypeHandler" jdbcType="VARCHAR" javaType="com.mybatis.myEnum.Sex"/>
+    </typeHandlers>
+    <!--对象工厂-->
+    <!--<objectFactory type="">-->
+    <!--</objectFactory>-->
+    <!--插件-->
+    <!--<plugins>-->
+        <!--<plugin interceptor=""></plugin>-->
+    <!--</plugins>-->
+    <!--配置环境-->
+    <environments default="development">
+        <!--环境变量-->
+        <environment id="development">
+            <!--事务管理器-->
+            <transactionManager type="JDBC">
+                <!--<property name="autoCommit" value="true"/>-->
+            </transactionManager>
+            <!--数据源-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${driver}"/>
+                <property name="url" value="${url}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!--数据库厂商标识-->
+    <!--<databaseIdProvider type=""/>-->
+    <!--映射器-->
+    <mappers>
+        <mapper resource="mapper/RoleMapper.xml"/>
+    </mappers>
+</configuration>
