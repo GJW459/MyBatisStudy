@@ -47,6 +47,9 @@
     <!--<databaseIdProvider type=""/>-->
     <!--映射器-->
     <mappers>
-        <mapper resource="mapper/RoleMapper.xml"/>
+        <!--<com.mybatis.com resource="com.mybatis.com/RoleMapper.xml"/>-->
+        <!--<com.mybatis.com resource="com.mybatis.com/StudentMapper.xml"/>-->
+        <!--<com.mybatis.com resource="com.mybatis.com/StudentSelfcardMapper.xml"/>-->
+        <package name="com.mybatis.dao"/>
     </mappers>
 </configuration>
