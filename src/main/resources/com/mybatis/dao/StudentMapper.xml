@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mybatis.dao.StudentMapper">
-
+    <cache/>
     <resultMap id="studentMap" type="student">
         <id property="id" column="id"/>
         <result property="cname" column="cname"/>
@@ -11,10 +11,22 @@
         <result property="selfcardNo" column="selfcard_no"/>
         <result property="note" column="note"/>
         <!--学生表和学生证表是一对一的关系 是以学生证id级联 id和student_id -->
-        <association property="studentSelfcard" column="id" select="com.mybatis.dao.StudentSelfcardMapper.findStudentSelfcardByStudentId"/>
+        <association property="studentSelfcard" column="id" fetchType="lazy" select="com.mybatis.dao.StudentSelfcardMapper.findStudentSelfcardByStudentId"/>
+        <collection property="studentLectures"  column="id" fetchType="lazy" select="com.mybatis.dao.StudentLectureMapper.getStudentLecture"/>
+        <!--鉴别器，通过sex鉴别是男还是女-->
+        <discriminator javaType="string" column="sex">
+            <case value="男性" resultMap="maleStudentMap"/>
+            <case value="女性" resultMap="femaleStudentMap"/>
+        </discriminator>
     </resultMap>
     <select id="getStudent" parameterType="int" resultMap="studentMap">
         select id,cname,sex,selfcard_no,note from t_student where id=#{id}
     </select>
+    <resultMap id="maleStudentMap" type="maleStudent" extends="studentMap">
+        <collection property="studentHealthMales" fetchType="lazy" column="id" select="com.mybatis.dao.StudentHealthMaleMapper.findStudentHealthMaleByStuId"/>
+    </resultMap>
+    <resultMap id="femaleStudentMap" type="femaleStudent" extends="studentMap">
+        <collection property="studentHealthFemales" fetchType="lazy" column="id" select="com.mybatis.dao.StudentHealthFemaleMapper.findStudentHealthFemaleByStuId"/>
+    </resultMap>
 
 </mapper>

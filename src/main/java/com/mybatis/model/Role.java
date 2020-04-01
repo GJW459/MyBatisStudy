@@ -11,7 +11,9 @@ package com.mybatis.model;
 
 import com.mybatis.myEnum.Sex;
 
-public class Role {
+import java.io.Serializable;
+
+public class Role implements Serializable {
     private Long id;
     private String roleName;
     private String note;

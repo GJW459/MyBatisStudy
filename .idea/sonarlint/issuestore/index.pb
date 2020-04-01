@@ -17,3 +17,13 @@ Y
 -src/main/java/com/mybatis/dao/RoleMapper.java,7\6\7669037d73b90376a41770d246d8d678149efcd4
 _
 /src/main/java/com/mybatis/test/MyBatisTest.java,2\c\2ccae89e5b880646b16a0db600eb6d89f9bfdd39
+\
+,src/main/java/com/mybatis/model/Student.java,1\6\160b781ecdf26f6b0b8cff3e965d515d62d6cf79
+`
+0src/main/java/com/mybatis/dao/StudentMapper.java,e\9\e99496d1d65d5211011c51275f94d335c2121178
+`
+0src/main/java/com/mybatis/test/MyBatisTest2.java,7\a\7a3a86f4d4240b8bb6674b0ac89b542dfae72827
+h
+8src/main/java/com/mybatis/dao/StudentSelfcardMapper.java,9\0\90044be87530bd8a609fb0aafd9c3205d8394a3b
+d
+4src/main/java/com/mybatis/model/StudentSelfcard.java,5\d\5dd6cd8586e5ff6f9e1a85a18740fbb52f861d43

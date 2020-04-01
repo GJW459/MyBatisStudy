@@ -11,8 +11,10 @@ package com.mybatis.model;
 
 import org.apache.ibatis.type.Alias;
 
+import java.io.Serializable;
+
 @Alias("person")
-public class Person {
+public class Person implements Serializable {
 
     private Integer id;
     private Integer age;

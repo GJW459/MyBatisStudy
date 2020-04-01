@@ -9,6 +9,8 @@
  */
 package com.mybatis.model;
 
+import java.io.Serializable;
+
 /**
  * 学生证
  * create table t_student_selfcard(
@@ -20,7 +22,7 @@ package com.mybatis.model;
  *
  * );
  */
-public class StudentSelfcard {
+public class StudentSelfcard implements Serializable {
 
     private Integer id;
     private Integer studentId;
@@ -60,7 +62,7 @@ public class StudentSelfcard {
     }
 
     @Override
-    public String toString() {
+    public String toString()  {
         return "StudentSelfcard{" +
                 "id=" + id +
                 ", studentId=" + studentId +

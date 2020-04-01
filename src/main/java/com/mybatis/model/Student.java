@@ -11,6 +11,9 @@ package com.mybatis.model;
 
 import com.mybatis.myEnum.Sex;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * create table t_student(
  * id int(20) not null auto_increment comment '编号',
@@ -22,13 +25,23 @@ import com.mybatis.myEnum.Sex;
  *
  * );
  */
-public class Student {
+public class Student implements Serializable {
     private Integer id;
     private String cname;
     private Sex sex;
     private Integer selfcardNo;
     private String note;
     private StudentSelfcard studentSelfcard;
+    //一个学生有多个学生课程表 一对多的关系
+    private List<StudentLecture> studentLectures;
+
+    public List<StudentLecture> getStudentLectures() {
+        return studentLectures;
+    }
+
+    public void setStudentLectures(List<StudentLecture> studentLectures) {
+        this.studentLectures = studentLectures;
+    }
 
     public StudentSelfcard getStudentSelfcard() {
         return studentSelfcard;
@@ -87,6 +100,7 @@ public class Student {
                 ", selfcardNo=" + selfcardNo +
                 ", note='" + note + '\'' +
                 ", studentSelfcard=" + studentSelfcard +
+                ", studentLectures=" + studentLectures +
                 '}';
     }
 }
